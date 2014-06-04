@@ -1,0 +1,3 @@
+class WordController < ApplicationController
+
+end
