@@ -1,0 +1,11 @@
+<h1><%= @vocab_list.list_name %></h1>
+<% if @vocab_list.words == [] %>
+  <p>There are no words yet in this list. <%= link_to 'Add some', new_word_path %>?</p>
+<% else %>
+  <ul>
+  <% @vocab_list.words.all.each do |word| %>
+    <li><%= word.word_name %> - <%= word.definition %></li>
+  <% end %>
+  </ul>
+  <p><%= link_to 'Add more words!', new_word_path %></p>
+<% end %>
