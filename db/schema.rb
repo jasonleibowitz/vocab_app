@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604155410) do
+ActiveRecord::Schema.define(version: 20140604173622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,15 +24,30 @@ ActiveRecord::Schema.define(version: 20140604155410) do
     t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "providers"
+    t.string   "provider"
     t.string   "uid"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "users_vocab_lists", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "vocab_list_id"
+  end
+
   create_table "vocab_lists", force: true do |t|
-    t.string "list_name"
+    t.string  "list_name"
+    t.integer "list_owner_id"
+    t.integer "user_id"
+  end
+
+  create_table "vocab_lists_words", id: false, force: true do |t|
+    t.integer "word_id"
+    t.integer "vocab_list_id"
   end
 
   create_table "words", force: true do |t|
