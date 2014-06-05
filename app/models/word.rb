@@ -6,16 +6,30 @@ class Word < ActiveRecord::Base
   def dictionary_lookup
     result = HTTParty.get(DICTIONARY_API + self.word_name + "?key=" + ENV['DICTIONARY_API_KEY'])
     json = Crack::XML.parse(result)
-    begin
-      self.part_of_speech = json["entry_list"]["entry"][0]["fl"]
-      self.definition = json["entry_list"]["entry"][0]["def"]["dt"][0]
-      self.sub_words
-    rescue NoMethodError
-      self.part_of_speech = json["entry_list"]["entry"]["fl"]
-      self.definition = json["entry_list"]["entry"]["def"]["dt"][0]
-      self.sub_words
+    if json["entry_list"]["suggestion"] == nil
+      begin
+        self.part_of_speech = json["entry_list"]["entry"][0]["fl"]
+        if json["entry_list"]["entry"][0]["def"]["dt"].is_a? Array
+          self.definition = json["entry_list"]["entry"][0]["def"]["dt"][0]
+        else
+          self.definition = json["entry_list"]["entry"][0]["def"]["dt"]
+        end
+        self.sub_words
+      rescue NoMethodError
+        self.part_of_speech = json["entry_list"]["entry"]["fl"]
+        if json["entry_list"]["entry"]["def"]["dt"].is_a? Array
+          self.definition = json["entry_list"]["entry"]["def"]["dt"][0]
+        else
+          self.definition = json["entry_list"]["entry"]["def"]["dt"]
+        end
+        self.sub_words
+      end
+      self.save!
+      return 'successful'
+    else
+      self.destroy!
+      return json["entry_list"]["suggestion"]
     end
-    self.save!
   end
 
   def sub_words
@@ -28,6 +42,10 @@ class Word < ActiveRecord::Base
     self.definition.gsub!("</aq>", "")
     self.definition.gsub!("<sx>", ", ")
     self.definition.gsub!("</sx>", ". ")
+    self.definition.gsub!("<d_link>", "")
+    self.definition.gsub!("</d_link>", "")
+    self.definition.gsub!("<fw>", "")
+    self.definition.gsub!("</fw>", "")
     return self
   end
 

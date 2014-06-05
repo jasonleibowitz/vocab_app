@@ -19,10 +19,15 @@ class WordsController < ApplicationController
       flash[:notice] = "That word is already in this list."
     else
       @word.vocab_lists.push(@list)
-      @word.dictionary_lookup
-      @word.update_list_count
+      lookup = @word.dictionary_lookup
+      if lookup == 'successful'
+        @word.update_list_count
+        redirect_to @list
+      else
+        flash[:alert] = "Did you mean #{lookup}?"
+        render :new
+      end
     end
-    redirect_to @list
   end
 
   private
