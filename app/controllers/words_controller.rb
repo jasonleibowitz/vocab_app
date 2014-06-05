@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
 
   def index
-
+    @words = Word.order("list_count desc")
   end
 
   def show
@@ -20,6 +20,7 @@ class WordsController < ApplicationController
     else
       @word.vocab_lists.push(@list)
       @word.dictionary_lookup
+      @word.update_list_count
     end
     redirect_to @list
   end
