@@ -56,6 +56,9 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    foundation-rails (5.2.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     hashie (2.1.1)
     hike (1.2.3)
     httparty (0.13.0)
@@ -171,6 +174,7 @@ DEPENDENCIES
   crack
   devise
   figaro
+  foundation-rails
   httparty
   jbuilder (~> 2.0)
   jquery-rails
