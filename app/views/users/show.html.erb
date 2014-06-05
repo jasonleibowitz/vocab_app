@@ -1,7 +1,18 @@
-<p>Welcome <%= current_user.first_name %></p>
-<%= link_to "Sign Out", destroy_user_session_path, method: 'delete' %>
+<div class="row">
+  <div class="small-4">
+    <p>Welcome <%= current_user.first_name %> |
+    <%= link_to "Sign Out", destroy_user_session_path, method: 'delete' %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-10 small-offset-1">
+    <h3><%= current_user.first_name %>'s Vocab Lists</h3>
+    <hr>
+    <% current_user.vocab_lists.all.each do |list| %>
+    <p><%= link_to list.list_name, vocab_list_path(list) %> (<%= list.words.length %> words)</p>
+    <% end %>
+    <%= link_to "Create a New Vocab List", new_vocab_list_path %>
+  </div>
+</div>
 <br>
-<% current_user.vocab_lists.all.each do |list| %>
-<p><%= link_to list.list_name, vocab_list_path(list) %> (<%= list.words.length %> words)</p>
-<% end %>
-<%= link_to "Create a New Vocab List", new_vocab_list_path %>
