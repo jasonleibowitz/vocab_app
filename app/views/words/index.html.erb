@@ -1,1 +1,8 @@
 <h1>Most Popular Saved Words</h1>
+
+<% @words.each do |word| %>
+  <ul>
+  <li><%= word.word_name.capitalize %></li>
+  <li>This word has been saved <%= word.list_count %> <%= word.list_count > 1 ? "times" : "time" %>.</li>
+  </ul>
+<% end %>
