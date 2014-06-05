@@ -1,11 +1,26 @@
-<h1><%= @vocab_list.list_name %></h1>
-<% if @vocab_list.words == [] %>
-  <p>There are no words yet in this list. <%= link_to 'Add some', new_word_path %>?</p>
-<% else %>
-  <ul>
-  <% @vocab_list.words.all.each do |word| %>
-    <li><%= word.word_name %> - <%= word.definition %></li>
-  <% end %>
-  </ul>
-  <p><%= link_to 'Add more words!', new_word_path %></p>
-<% end %>
+<div class="row">
+  <div class="small-10 small-centered columns">
+    <h1><%= @vocab_list.list_name %></h1>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-10 small-offset-1 columns">
+    <% if @vocab_list.words == [] %>
+      <p>There are no words yet in this list. <%= link_to 'Add some', new_word_path %>?</p>
+    <% else %>
+      <p><%= link_to 'Add more words!', new_word_path %></p>
+      <% @vocab_list.words.order("word_name asc").each do |word| %>
+        <div class="card-wrap">
+          <h6><%= word.word_name.upcase %></h6>
+          <hr>
+          <p class="definition"><b>part of speech:</b> <%= word.part_of_speech %></p>
+          <p class="definition"><b>definition:</b> <%= word.definition %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
