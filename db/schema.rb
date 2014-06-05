@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604173622) do
+ActiveRecord::Schema.define(version: 20140605195931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,10 @@ ActiveRecord::Schema.define(version: 20140604173622) do
   end
 
   create_table "words", force: true do |t|
-    t.string "word_name"
-    t.string "part_of_speech"
-    t.string "definition"
+    t.string  "word_name"
+    t.string  "part_of_speech"
+    t.string  "definition"
+    t.integer "list_count",     default: 0
   end
 
 end
