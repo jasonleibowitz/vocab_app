@@ -28,11 +28,16 @@
   margin-bottom: 25px;
 }
 
+.back {
+  margin-left: 40px;
+}
+
 p.definition {
   font-size: 10pt;
   line-height: 10pt;
   text-align: justify;
   margin-top: 25px;
+  width: 150px;
 }
 
 p.alert {
