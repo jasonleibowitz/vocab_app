@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require foundation
 //= require underscore-min
-//= require turbolinks
 //= require_tree .
 
 
