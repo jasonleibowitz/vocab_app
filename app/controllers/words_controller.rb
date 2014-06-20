@@ -32,6 +32,10 @@ class WordsController < ApplicationController
     end
   end
 
+  def popular
+    @words = Word.order("list_count desc").limit(10)
+  end
+
   private
   def word_params
     params.require(:word).permit(:word_name, :vocab_lists)
