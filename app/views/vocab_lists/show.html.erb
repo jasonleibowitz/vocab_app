@@ -5,20 +5,36 @@
   </div>
 </div>
 
+<%= javascript_tag do %>
+  window.cards = []
+<% end %>
+
 <div class="row">
   <div class="small-10 small-offset-1 columns">
     <% if @vocab_list.words == [] %>
       <p>There are no words yet in this list. <%= link_to 'Add some', new_word_path %>?</p>
     <% else %>
       <p><%= link_to 'Add more words!', new_word_path %></p>
-        <% @vocab_list.words.order("word_name asc").each do |word| %>
-          <%= content_tag :div, class: "card-wrap", data: { word_info: word } do -%>
-            <h6><%= word.word_name.upcase %></h6>
-            <hr>
-            <p class="definition"><b>part of speech:</b> <%= word.part_of_speech %></p>
-            <p class="definition"><b>definition:</b> <%= word.definition %></p>
-          <% end -%>
-        <% end %>
+      <% @vocab_list.words.order("word_name asc").each do |word| %>
+        <%= content_tag(:div, class: "card-wrap", id: dom_id(word), data: { word_info: word } ) do -%>
+
+        <div class="front">
+          <h6><%= word.word_name.upcase %></h6>
+        </div>
+
+        <div class="back">
+          <h6><%= word.word_name.upcase %></h6>
+          <hr class="definition">
+          <p class="definition"><b>part of speech:</b> <%= word.part_of_speech %></p>
+          <p class="definition"><b>definition:</b> <%= word.definition %></p>
+          <%= javascript_tag do %>
+            window.cards.push("<%= word.id %>")
+          <% end %>
+        <% end -%>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
+
+<script src="vocab_show.js"></script>
