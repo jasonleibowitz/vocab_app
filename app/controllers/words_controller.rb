@@ -22,9 +22,11 @@ class WordsController < ApplicationController
       lookup = @word.dictionary_lookup
       if lookup == 'successful'
         @word.update_list_count
+        flash[:alert] = nil
         redirect_to @list
       else
-        flash[:alert] = "Did you mean #{lookup}?"
+        @word.destroy!
+        flash[:alert] = "Try again. You misspelled the word."
         render :new
       end
     end
