@@ -28,8 +28,13 @@
   margin-bottom: 25px;
 }
 
-.back {
-  margin-left: 40px;
+.front-word-title {
+  color: white;
+  margin-top: 80px;
+}
+
+.def-word-title {
+  padding-top: 10px;
 }
 
 p.definition {
@@ -37,9 +42,55 @@ p.definition {
   line-height: 10pt;
   text-align: justify;
   margin-top: 25px;
-  width: 150px;
+  padding-left: 50px;
+  width: 300px;
 }
 
 p.alert {
   color: red;
+}
+
+.flip {
+    -webkit-perspective: 800;
+    width: 400px;
+    height: 200px;
+    position: relative;
+    margin: 50px auto;
+}
+.flip .card.flipped {
+    -webkit-transform: rotatex(-180deg);
+}
+.flip .card {
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+}
+.flip .card .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    z-index: 2;
+    font-family: Georgia;
+    font-size: 3em;
+    text-align: center;
+    line-height: 200px;
+}
+.flip .card .front {
+    position: absolute;
+    z-index: 1;
+    background: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+}
+.flip .card .back {
+    -webkit-transform: rotatex(-180deg);
+    background: blue;
+    background: white;
+    color: black;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 25px;
 }
