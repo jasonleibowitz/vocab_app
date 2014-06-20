@@ -34,6 +34,10 @@ class VocabListsController < ApplicationController
     @vocab_list = VocabList.find(params[:id])
   end
 
+  def test
+
+  end
+
   private
   def vocab_params
     params.require(:vocab_list).permit(:list_name)
