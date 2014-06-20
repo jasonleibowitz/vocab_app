@@ -1,3 +1,5 @@
-$( document ).ready(function() {
-    console.log( "loaded bro!" );
+$(document).ready(function(){
+
+  console.log('loaded bro!');
+
 });
