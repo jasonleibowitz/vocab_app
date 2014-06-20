@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :vocab_lists
   resources :words
+  get '/test' => 'vocab_lists#test'
   root to: 'users#show'
 end
