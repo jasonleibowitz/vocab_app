@@ -1,13 +1,11 @@
+<script src="vocab_show.js"></script>
+
 <div class="row">
   <div class="small-10 small-centered columns">
     <h1><%= @vocab_list.list_name %></h1>
     <hr>
   </div>
 </div>
-
-<%= javascript_tag do %>
-  window.cards = []
-<% end %>
 
 <div class="row">
   <div class="small-10 small-offset-1 columns">
@@ -16,25 +14,22 @@
     <% else %>
       <p><%= link_to 'Add more words!', new_word_path %></p>
       <% @vocab_list.words.order("word_name asc").each do |word| %>
-        <%= content_tag(:div, class: "card-wrap", id: dom_id(word), data: { word_info: word } ) do -%>
+        <%= content_tag(:div, class: "flip", id: dom_id(word), data: { word_info: word } ) do -%>
+        <div class="card">
+          <div class="face front">
+            <h4 class="front-word-title"><%= word.word_name.upcase %></h4>
+          </div>
 
-        <div class="front">
-          <h6><%= word.word_name.upcase %></h6>
-        </div>
-
-        <div class="back">
-          <h6><%= word.word_name.upcase %></h6>
-          <hr class="definition">
-          <p class="definition"><b>part of speech:</b> <%= word.part_of_speech %></p>
-          <p class="definition"><b>definition:</b> <%= word.definition %></p>
-          <%= javascript_tag do %>
-            window.cards.push("<%= word.id %>")
-          <% end %>
-        <% end -%>
+          <div class="face back">
+            <h6 class="def-word-title"><%= word.word_name.upcase %></h6>
+            <hr class="definition">
+            <p class="definition"><b>part of speech:</b> <%= word.part_of_speech %></p>
+            <p class="definition"><b>definition:</b> <%= word.definition %></p>
+          <% end -%>
+          </div>
         </div>
       <% end %>
     <% end %>
   </div>
 </div>
 
-<script src="vocab_show.js"></script>
