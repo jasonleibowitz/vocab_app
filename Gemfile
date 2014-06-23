@@ -37,7 +37,8 @@ group :development do
 end
 gem 'foundation-rails'
 gem "binding_of_caller"
-
+gem 'rspec-rails'
+gem 'minitest-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
