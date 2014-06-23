@@ -10,6 +10,9 @@ class WordsController < ApplicationController
 
   def new
     @word = Word.new
+    if params[:word_name] != nil
+      @chosen_word_name = params[:word_name]
+    end
   end
 
   def create

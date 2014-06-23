@@ -1,11 +1,15 @@
+<script src="popular.js"></script>
+<% if @chosen_word_name %>
+  <p class="hide" id="chosen-word-name"><%= @chosen_word_name %></p>
+<% end %>
 <div class="row">
   <div class="small-6 small-centered columns">
     <h4>Add a Word</h4>
-    <hr>
-    <br>
-    <%= render 'form' %>
-    <hr>
-    <br>
+      <hr>
+        <br>
+          <%= render 'form' %>
+        <br>
+      <hr>
     <a href="<%= words_popular_path %>"><h6>View Most Popular Words</h6></a>
   </div>
 </div>

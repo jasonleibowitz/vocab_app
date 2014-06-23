@@ -1,9 +1,10 @@
 <%= form_for @word do |f| %>
   <%= f.label :word_name %>
-  <%= f.text_field :word_name %>
+  <%= f.text_field :word_name, id: 'input' %>
 
   <%= f.label :vocab_list %>
   <%= f.select(:vocab_lists, options_from_collection_for_select(VocabList.all, :id, :list_name)) %>
 
   <%= f.submit :submit %>
 <% end %>
+

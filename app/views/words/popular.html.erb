@@ -9,7 +9,7 @@
   <div class="small-10 columns">
     <% @words.each do |word| %>
       <ul>
-        <li><%= word.word_name %> - (saved <%= word.list_count %> times)</li>
+        <li><%= word.word_name %> - (saved <%= word.list_count %> times) <%= link_to '[add]', new_word_path(:word_name => word.word_name) %></li>
       </ul>
     <% end %>
   </div>
