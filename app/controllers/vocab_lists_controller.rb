@@ -38,6 +38,10 @@ class VocabListsController < ApplicationController
 
   end
 
+  def game
+    @vocab_list = VocabList.find(params[:id])
+  end
+
   private
   def vocab_params
     params.require(:vocab_list).permit(:list_name)
