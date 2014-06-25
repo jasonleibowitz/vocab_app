@@ -13,6 +13,7 @@
       <p>There are no words yet in this list. <%= link_to 'Add some', new_word_path %>?</p>
     <% else %>
       <p><%= link_to 'Add more words!', new_word_path %></p>
+      <p><%= link_to 'Play the Flashcard Game!', game_path(@vocab_list) %></p>
       <% @vocab_list.words.order("word_name asc").each do |word| %>
         <%= content_tag(:div, class: "flip", id: dom_id(word), data: { word_info: word } ) do -%>
         <div class="card">
